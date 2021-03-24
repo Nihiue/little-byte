@@ -58,7 +58,7 @@ function loadBytecode(filePath) {
   return script;
 }
 
-if (process.mainModule.filename === __filename) {
+if (process.mainModule && process.mainModule.filename === __filename) {
   const scirpt = loadBytecode(process.argv[2]);
   scirpt.runInThisContext();
 }
