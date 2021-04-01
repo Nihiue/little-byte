@@ -48,8 +48,12 @@ function loadBytecode(filePath) {
   setHeader(bytecode, 'flag_hash', getFlagBuf());
 
   const sourceHash = buf2num(getHeader(bytecode, 'source_hash'));
+
   const script = new vm.Script(' '.repeat(sourceHash), {
-    cachedData: bytecode
+    filename: filePath,
+    cachedData: bytecode,
+    lineOffset: 0,
+    displayErrors: true
   });
 
   if (script.cachedDataRejected) {
@@ -60,7 +64,12 @@ function loadBytecode(filePath) {
 
 if (process.mainModule && process.mainModule.filename === __filename) {
   const scirpt = loadBytecode(process.argv[2]);
-  scirpt.runInThisContext();
+  scirpt.runInThisContext({
+    filename: process.argv[2],
+    displayErrors: true,
+    lineOffset: 0,
+    columnOffset: 0,
+  });
 }
 
 module.exports.loadBytecode = loadBytecode;
