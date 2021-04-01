@@ -76,33 +76,6 @@ Total Time:  65883.3875
 
 ### Linux
 
-Bytecode
-
-```
-Running Web Tooling Benchmark v0.5.3…
--------------------------------------
-         acorn: 13.01 runs/s
-         babel:  9.66 runs/s
-  babel-minify: 11.74 runs/s
-       babylon: 10.97 runs/s
-         buble:  6.29 runs/s
-          chai: 18.70 runs/s
-  coffeescript:  8.62 runs/s
-        espree:  9.88 runs/s
-       esprima: 10.64 runs/s
-        jshint: 10.24 runs/s
-         lebab: 13.97 runs/s
-       postcss:  7.74 runs/s
-       prepack:  7.91 runs/s
-      prettier:  8.58 runs/s
-    source-map:  9.45 runs/s
-        terser: 19.84 runs/s
-    typescript:  9.50 runs/s
-     uglify-js:  5.81 runs/s
--------------------------------------
-Geometric mean: 10.16 runs/s
-```
-
 Source Code
 
 ```
@@ -129,6 +102,34 @@ Running Web Tooling Benchmark v0.5.3…
 -------------------------------------
 Geometric mean: 10.25 runs/s
 Total Time:  80346.842631
+```
+
+Bytecode
+
+```
+Running Web Tooling Benchmark v0.5.3…
+-------------------------------------
+         acorn: 13.01 runs/s
+         babel:  9.66 runs/s
+  babel-minify: 11.74 runs/s
+       babylon: 10.97 runs/s
+         buble:  6.29 runs/s
+          chai: 18.70 runs/s
+  coffeescript:  8.62 runs/s
+        espree:  9.88 runs/s
+       esprima: 10.64 runs/s
+        jshint: 10.24 runs/s
+         lebab: 13.97 runs/s
+       postcss:  7.74 runs/s
+       prepack:  7.91 runs/s
+      prettier:  8.58 runs/s
+    source-map:  9.45 runs/s
+        terser: 19.84 runs/s
+    typescript:  9.50 runs/s
+     uglify-js:  5.81 runs/s
+-------------------------------------
+Geometric mean: 10.16 runs/s
+Total Time:  79814.842631
 ```
 
 ## 结论
