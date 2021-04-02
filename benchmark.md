@@ -12,7 +12,7 @@
 操作系统选择两个主要平台
   
 * Windows 10 20H2, Node v12.20.1
-* 虚拟机：Linux Mint @ 4.15.0-42-generic, Node v12.18.3
+* 虚拟机：Linux Mint @ 5.4.0-70-generic, Node v12.18.3
 
 ## 测试结果
 
@@ -81,27 +81,27 @@ Source Code
 ```
 Running Web Tooling Benchmark v0.5.3…
 -------------------------------------
-         acorn: 13.39 runs/s
-         babel:  9.68 runs/s
-  babel-minify: 11.62 runs/s
-       babylon: 11.05 runs/s
-         buble:  6.46 runs/s
-          chai: 18.12 runs/s
-  coffeescript:  8.60 runs/s
-        espree:  7.82 runs/s
-       esprima:  8.75 runs/s
-        jshint:  9.96 runs/s
-         lebab: 14.43 runs/s
-       postcss:  8.37 runs/s
-       prepack:  8.80 runs/s
-      prettier:  9.00 runs/s
-    source-map: 11.58 runs/s
-        terser: 20.38 runs/s
-    typescript:  9.87 runs/s
-     uglify-js:  6.09 runs/s
+         acorn: 13.70 runs/s
+         babel: 10.08 runs/s
+  babel-minify: 12.61 runs/s
+       babylon: 13.24 runs/s
+         buble:  7.09 runs/s
+          chai: 19.11 runs/s
+  coffeescript:  9.26 runs/s
+        espree:  9.54 runs/s
+       esprima: 10.49 runs/s
+        jshint: 11.13 runs/s
+         lebab: 14.13 runs/s
+       postcss:  8.72 runs/s
+       prepack:  9.68 runs/s
+      prettier:  9.50 runs/s
+    source-map: 12.44 runs/s
+        terser: 21.69 runs/s
+    typescript: 10.66 runs/s
+     uglify-js:  6.12 runs/s
 -------------------------------------
-Geometric mean: 10.25 runs/s
-Total Time:  80346.842631
+Geometric mean: 11.09 runs/s
+Total Time:  75290.159915
 ```
 
 Bytecode
@@ -109,27 +109,27 @@ Bytecode
 ```
 Running Web Tooling Benchmark v0.5.3…
 -------------------------------------
-         acorn: 13.43 runs/s
-         babel:  9.72 runs/s
-  babel-minify: 11.81 runs/s
-       babylon: 11.33 runs/s
-         buble:  6.36 runs/s
-          chai: 18.96 runs/s
-  coffeescript:  8.04 runs/s
-        espree:  8.54 runs/s
-       esprima:  7.60 runs/s
-        jshint: 10.34 runs/s
-         lebab: 12.79 runs/s
-       postcss:  7.74 runs/s
-       prepack:  8.75 runs/s
-      prettier:  8.79 runs/s
-    source-map: 11.23 runs/s
-        terser: 20.41 runs/s
-    typescript:  9.57 runs/s
-     uglify-js:  5.98 runs/s
+         acorn: 13.73 runs/s
+         babel:  9.81 runs/s
+  babel-minify: 11.91 runs/s
+       babylon: 12.27 runs/s
+         buble:  7.07 runs/s
+          chai: 17.79 runs/s
+  coffeescript:  9.33 runs/s
+        espree:  9.32 runs/s
+       esprima: 10.54 runs/s
+        jshint: 10.86 runs/s
+         lebab: 14.08 runs/s
+       postcss:  8.74 runs/s
+       prepack:  9.04 runs/s
+      prettier:  9.34 runs/s
+    source-map: 11.19 runs/s
+        terser: 21.02 runs/s
+    typescript:  9.82 runs/s
+     uglify-js:  6.37 runs/s
 -------------------------------------
-Geometric mean: 10.07 runs/s
-Total Time:  80453.03416
+Geometric mean: 10.77 runs/s
+Total Time:  75681.460331
 ```
 
 ## 结论
