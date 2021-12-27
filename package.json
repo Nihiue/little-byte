@@ -1,0 +1,40 @@
+{
+  "name": "little-byte-package",
+  "version": "1.0.0",
+  "description": "Node.js bytecode compiler",
+  "main": "dist/index.js",
+  "files": [
+    "lib/**"
+  ],
+  "scripts": {
+    "build": "tsc -d",
+    "test": "npm run test-walker && npm run test-run",
+    "test-walker": "node test/test-walker.js",
+    "test-run": "node test/test-run.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nihiue/little-byte-package.git"
+  },
+  "keywords": [
+    "node.js",
+    "bytecode"
+  ],
+  "author": "Wanglei (nihiue@gmail.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Nihiue/little-byte-package/issues"
+  },
+  "homepage": "https://github.com/Nihiue/little-byte-package#readme",
+  "dependencies": {
+    "@babel/parser": "^7.16.6"
+  },
+  "devDependencies": {
+    "@babel/types": "^7.16.0",
+    "@types/node": "^17.0.5",
+    "typescript": "^4.5.4"
+  },
+  "engines": {
+    "node": ">=12 <=16"
+  }
+}
