@@ -9,7 +9,6 @@ const FUNC_TYPES = [
 
 const isNode = (t: any) => (t && t.constructor.name === 'Node');
 
-
 function walkNode(root: any, codeStr:string) {
   const ret:[number, string][] = [];
   const todo = [root];

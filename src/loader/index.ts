@@ -10,19 +10,20 @@ import { headerUtils, getReferenceFlagHash, makeRequireFunction } from './utils'
 
 export function loadBytecode(filename:string) {
   // 这里要求是同步的
-  const bytecode = fs.readFileSync(filename, null);
+  const byteBuffer = fs.readFileSync(filename, null);
   let bytesource = '';
 
   try {
     bytesource = fs.readFileSync(filename.replace(/\.bytecode$/i, '.bytesource'), 'utf-8');
   } catch (e) {}
 
-  headerUtils.set(bytecode, 'flag_hash', getReferenceFlagHash());
+  headerUtils.set(byteBuffer, 'flag_hash', getReferenceFlagHash());
 
-  const sourceHash = headerUtils.buf2num(headerUtils.get(bytecode, 'source_hash'));
-  const script = new vm.Script(bytesource.length === sourceHash ? bytesource :  ' '.repeat(sourceHash), {
+  const sourceLength = headerUtils.buf2num(headerUtils.get(byteBuffer, 'source_hash'));
+  const dummySource = bytesource.length === sourceLength ? bytesource :  ' '.repeat(sourceLength);
+  const script = new vm.Script(dummySource, {
     filename: filename,
-    cachedData: bytecode
+    cachedData: byteBuffer
   });
 
   if (script.cachedDataRejected) {
@@ -31,14 +32,13 @@ export function loadBytecode(filename:string) {
   return script;
 }
 
-export function execRawByteCode(filename:string) {
+export function execByteCode(filename:string) {
   const script = loadBytecode(filename);
   return script.runInThisContext();
 }
 
 (_module as any)._extensions['.bytecode'] = function loadModule(module: any, filename:string) {
-  const script = loadBytecode(filename);
-  const wrapperFn = script.runInThisContext();
+  const wrapperFn = execByteCode(filename);
   const require = makeRequireFunction(module);
   wrapperFn.bind(module.exports)(module.exports, require, module, filename, path.dirname(filename));
 };

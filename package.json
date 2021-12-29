@@ -1,6 +1,6 @@
 {
-  "name": "little-byte-package",
-  "version": "1.0.0",
+  "name": "little-byte",
+  "version": "0.0.1",
   "description": "Node.js bytecode compiler",
   "main": "dist/index.js",
   "files": [

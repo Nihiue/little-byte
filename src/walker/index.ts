@@ -52,6 +52,7 @@ export async function start({ inputDir, outputDir, onFile }: WalkOptions) {
   const dirs:string[] = [ inputDir ];
 
   let currentDir;
+
   while (currentDir = dirs.shift()) {
     const files = await fs.promises.readdir(currentDir, {
       withFileTypes: true
@@ -63,24 +64,25 @@ export async function start({ inputDir, outputDir, onFile }: WalkOptions) {
         dirs.push(currentPath);
         continue;
       }
-      const fileInfo: FileInfo = {
+      const fileExt = path.extname(file.name).toLowerCase();
+      const fileInfo: FileInfo = Object.freeze({
         path: currentPath,
         relativePath: path.relative(inputDir, currentPath),
         name: file.name,
-        ext: path.extname(file.name).toLowerCase(),
-        isScript: false
-      };
-      fileInfo.isScript =  fileInfo.ext === '.js';
-      let action: WalkAction = fileInfo.isScript ? 'compile' : 'ignore';
+        ext: fileExt,
+        isScript: fileExt === '.js'
+      });
      
       try {
-        action = onFile(Object.freeze(fileInfo), action);
+        const action = onFile(fileInfo, fileInfo.isScript ? 'compile' : 'ignore');
+
         if (!fileInfo.isScript && action === 'compile') {
           throw new Error(`little-byte: cannot compile non-js file: ${fileInfo.relativePath}`);
         }
+
         await processFile(fileInfo, action || 'ignore', outputDir);
       } catch (e) {
-        console.log(e);
+        console.log(fileInfo, e);
       }
     }
   }
