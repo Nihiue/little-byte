@@ -1,14 +1,14 @@
 # little-byte
 
-[中文版](./README.zhCN.md)
+[English Version](./README.md)
 
-Compile Node.js code into bytecode.
+将 Node.js 应用代码编译为字节码
 
-## Compile App
+## 编译应用
 
-### Prepare Build Script
+### 准备编译脚本
 
-Create build/index.js
+创建 build/index.js
 
 ```javascript
 const { walker } = require('little-byte').default;
@@ -40,15 +40,15 @@ walker.start({
 });
 ```
 
-### Build
+### 编译
 
 ```bash
 $ node build/index.js
 ```
 
-## Run Compiled App
+## 运行编译后的应用
 
-Create app-entry.js
+创建 app-entry.js
 
 ```javascript
 
@@ -59,18 +59,17 @@ require('./dist/index');
 
 ```
 
-## Limitations
+## 限制
 
-### Using same Node.js version for building and running bytecode
+### 编译和运行字节码需要使用相同版本的 Node.js
 
-The format of bytecode might change over Node.js versions.
+不同版本的 Node.js 可能使用不同的字节码格式
 
-### Bytecode does not protect constant values
+### 字节码不能保护代码中的常量值
 
-It's possible to recover constant strings from bytecode with hex editor.
+可以使用16进制编辑器从字节码中恢复出字符串等常量的值
 
 
-## For More Info
+## 更多信息
 
-[Docs](https://translate.google.com/translate?js=n&sl=chinese&tl=en&u=https://github.com/Nihiue/little-byte-demo) By Google Translate
-
+[原理 & 设计思路](https://github.com/Nihiue/little-byte-demo)
