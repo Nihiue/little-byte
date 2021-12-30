@@ -32,6 +32,6 @@ module.exports.readTextFile = function () {
   return fs.readFileSync(path.join(__dirname, 'textfile.txt'), 'utf-8');
 }
 
-module.exports.stackTrace = function() {
+module.exports.stackTrace = function () {
   return (new Error()).stack;
 }

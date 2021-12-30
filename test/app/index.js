@@ -13,8 +13,8 @@ if (foo.getValue() !== 1000) {
   throw new Error('value is not 1000');
 }
 
-(async function() {
+(async function () {
   try {
     await sub.asyncArrowException();
-  } catch(e) {}
+  } catch (e) { }
 })();

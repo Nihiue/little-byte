@@ -7,10 +7,10 @@ import getByteSource from './bytesource';
 
 v8.setFlagsFromString('--no-lazy');
 
-export async function compileFile(filePath:string, outputDir = '') {
+export async function compileFile(filePath: string, outputDir = '') {
   outputDir = outputDir || path.dirname(filePath);
   const prefix = path.join(outputDir, path.basename(filePath).replace(/\.js$/i, ''));
-  
+
   const code = await fs.promises.readFile(filePath, 'utf-8');
   const wrappedCode = _module.wrap(code);
 

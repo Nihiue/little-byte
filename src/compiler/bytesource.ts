@@ -1,20 +1,27 @@
 import { parse } from '@babel/parser';
-const FUNC_TYPES = [
-  'ArrowFunctionExpression',
-  'FunctionDeclaration',
-  'FunctionExpression',
-  'ClassDeclaration',
-  'ClassMethod',
-];
+import type { Node, ArrowFunctionExpression, FunctionDeclaration, FunctionExpression, ClassDeclaration, ClassMethod, Statement } from '@babel/types';
 
-const isNode = (t: any) => (t && t.constructor.name === 'Node');
+type FuncNode = ArrowFunctionExpression | FunctionDeclaration | FunctionExpression | ClassDeclaration | ClassMethod;
+type SourceToken = [number, string];
 
-function walkNode(root: any, codeStr:string) {
-  const ret:[number, string][] = [];
-  const todo = [root];
-  let node: any;
+const isNode = (t: any): t is Node => (t && t.constructor.name === 'Node');
+const isFunction = (node: Node): node is FuncNode => {
+  return [
+    'ArrowFunctionExpression',
+    'FunctionDeclaration',
+    'FunctionExpression',
+    'ClassDeclaration',
+    'ClassMethod',
+  ].includes(node.type);
+}
+
+function walkNode(roots: Statement[], codeStr: string) {
+  const ret: [number, string][] = [];
+
+  const todo: Node[] = roots.filter(item => isNode(item));
+  let node: Node;
   while (node = todo.shift()) {
-    if (FUNC_TYPES.indexOf(node.type) > -1) {
+    if (isFunction(node)) {
       if (node.body.type === 'BlockStatement' || node.body.type === 'ClassBody') {
         ret.push([node.start, codeStr.slice(node.start, node.body.start + 1)]);
         ret.push([node.body.end - 1, codeStr.slice(node.body.end - 1, node.body.end)]);
@@ -22,8 +29,8 @@ function walkNode(root: any, codeStr:string) {
         ret.push([node.start, codeStr.slice(node.start, node.body.start)]);
       }
     }
-    Object.keys(node).forEach(k => {
-      const item = node[k];
+    Object.keys(node).forEach((k: keyof (Node)) => {
+      const item: any = node[k];
       if (item && item.forEach) {
         item.forEach((t: any) => (isNode(t) && todo.push(t)));
       } else if (isNode(item)) {
@@ -34,12 +41,12 @@ function walkNode(root: any, codeStr:string) {
   return ret;
 }
 
-function padString(len:number) {
+function padString(len: number) {
   return len <= 0 ? '' : (' '.repeat(len));
 }
 
-function findLineBreaks(codeStr:string) {
-  const lineBreaks:[number, string][] = [];
+function findLineBreaks(codeStr: string) {
+  const lineBreaks: SourceToken[] = [];
   let lastBr = -1;
   while (true) {
     lastBr = codeStr.indexOf('\n', lastBr + 1);
@@ -50,7 +57,7 @@ function findLineBreaks(codeStr:string) {
   }
 }
 
-function generateSource(tokens: [number, string][], targetLength: number) {
+function generateSource(tokens: SourceToken[], targetLength: number) {
   const ret = [];
   let len = 0;
 
@@ -68,7 +75,7 @@ function generateSource(tokens: [number, string][], targetLength: number) {
   return ret.join('');
 }
 
-export default function getByteSource (codeStr:string) {
+export default function getByteSource(codeStr: string) {
   const ast = parse(codeStr);
   const tokens = walkNode(ast.program.body, codeStr)
     .concat(findLineBreaks(codeStr))

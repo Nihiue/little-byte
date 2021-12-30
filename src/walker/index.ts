@@ -13,13 +13,13 @@ type FileInfo = {
 };
 
 interface WalkOptions {
-  silent ?: boolean;
+  silent?: boolean;
   inputDir: string;
   outputDir: string;
   onFile: (fileinfo: FileInfo, defaultAction: WalkAction) => WalkAction;
 };
 
-async function ensureDir(dirPath:string) {
+async function ensureDir(dirPath: string) {
   try {
     await fs.promises.stat(dirPath);
   } catch (e) {
@@ -31,13 +31,13 @@ async function ensureDir(dirPath:string) {
 
 async function processFile(fileInfo: FileInfo, action: WalkAction, outputDir: string, silent = false) {
   const targetDir = path.dirname(path.join(outputDir, fileInfo.relativePath));
-  switch(action) {
+  switch (action) {
     case 'copy':
       silent || console.log(` - Copy: ${fileInfo.relativePath}`);
       await ensureDir(targetDir);
       await fs.promises.copyFile(fileInfo.path, path.join(targetDir, fileInfo.name));
       break;
-    case 'ignore': 
+    case 'ignore':
       break;
     case 'compile':
       silent || console.log(` - Compile: ${fileInfo.relativePath}`);
@@ -50,7 +50,7 @@ async function processFile(fileInfo: FileInfo, action: WalkAction, outputDir: st
 }
 
 export async function start({ inputDir, outputDir, onFile, silent }: WalkOptions) {
-  const dirs:string[] = [ inputDir ];
+  const dirs: string[] = [inputDir];
 
   let currentDir;
 
@@ -73,7 +73,7 @@ export async function start({ inputDir, outputDir, onFile, silent }: WalkOptions
         ext: fileExt,
         isScript: fileExt === '.js'
       });
-     
+
       try {
         const action = onFile(fileInfo, fileInfo.isScript ? 'compile' : 'ignore');
 

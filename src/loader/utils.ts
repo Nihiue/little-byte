@@ -7,7 +7,7 @@ const HeaderOffsetMap = {
   'flag_hash': 12
 };
 
-type headerType = keyof(typeof HeaderOffsetMap);
+type headerType = keyof (typeof HeaderOffsetMap);
 
 export const headerUtils = {
   set(targetBuffer: Buffer, type: headerType, sourceBuffer: Buffer) {
@@ -44,20 +44,20 @@ function validateString(value: string, name: string) {
   }
 }
 
-export function makeRequireFunction(mod: any) {
+export function makeRequireFunction(mod: NodeJS.Module) {
   // see node.js lib/internal/modules/cjs/helpers.js
-  const Module = mod.constructor;
+  const Module: any = mod.constructor;
 
-  const require = function require(path:string) {
+  const require = function require(path: string) {
     return mod.require(path);
   };
 
-  require.resolve = function resolve(request:string, options:any) {
+  require.resolve = function resolve(request: string, options: any) {
     validateString(request, 'request');
     return Module._resolveFilename(request, mod, false, options);
   } as any;
 
-  require.resolve.paths = function paths(request:string) {
+  require.resolve.paths = function paths(request: string) {
     validateString(request, 'request');
     return Module._resolveLookupPaths(request, mod);
   };

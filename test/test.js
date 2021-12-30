@@ -12,8 +12,8 @@ async function fileExists(name) {
   }
 }
 
-describe('Compile ByteCode', function() {
-  it('should compile without error', async function() {
+describe('Compile ByteCode', function () {
+  it('should compile without error', async function () {
     await littleByte.walker.start({
       silent: true,
       inputDir: path.join(__dirname, 'app'),
@@ -31,28 +31,28 @@ describe('Compile ByteCode', function() {
     });
   });
 
-  it('should generate bytecode', async function() {
+  it('should generate bytecode', async function () {
     assert(await fileExists('dist/index.bytecode'));
     assert(await fileExists('dist/sub/index.bytecode'));
   });
 
-  it('should generate bytesouce', async function() {
+  it('should generate bytesouce', async function () {
     assert(await fileExists('dist/index.bytesource'));
     assert(await fileExists('dist/sub/index.bytesource'));
   });
 
-  it('should copy files', async function() {
+  it('should copy files', async function () {
     assert(await fileExists('dist/sub/textfile.txt'));
   });
 
-  it('should ignore files', async function() {
+  it('should ignore files', async function () {
     assert.strictEqual(await fileExists('dist/foobar/foo.js'), false);
-  });  
+  });
 });
 
-describe('Run ByteCode', function() {
-  
-  it('app runs without error', function() {
+describe('Run ByteCode', function () {
+
+  it('app runs without error', function () {
     require('./dist/index');
   });
 
@@ -63,7 +63,7 @@ describe('Run ByteCode', function() {
     return { sub, sayHello, myClass };
   }
 
-  it('function.toString() includes declaration', function() {
+  it('function.toString() includes declaration', function () {
     const { sub, sayHello, myClass } = getSub();
 
     assert(sayHello.includes('function sayHello'));
@@ -72,25 +72,23 @@ describe('Run ByteCode', function() {
     assert(myClass.includes('inc()'));
   });
 
-  it('function.toString() does not include function body', function() {
+  it('function.toString() does not include function body', function () {
     const { sub, sayHello, myClass } = getSub();
 
     assert(!myClass.includes('return this.value'));
     assert(!sayHello.includes('console.log'));
   });
 
-  it('exception in async arrow function does not crash', async function() {
+  it('exception in async arrow function does not crash', async function () {
     const { sub, sayHello, myClass } = getSub();
 
     try {
       await sub.asyncArrowException();
-    } catch (e) {}
+    } catch (e) { }
   })
 
-  it('stack trace works', function() {
+  it('stack trace works', function () {
     const { sub, sayHello, myClass } = getSub();
     assert(sub.stackTrace().includes('/sub/index.js:'));
   })
 })
-
-
