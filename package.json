@@ -1,13 +1,13 @@
 {
   "name": "little-byte",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "description": "Node.js bytecode compiler",
   "main": "lib/index.js",
   "files": [
     "lib/**"
   ],
   "scripts": {
-    "publish": "npm publish --registry=https://registry.npmjs.org",
+    "pub": "npm publish --registry=https://registry.npmjs.org",
     "build": "tsc -d",
     "test": "npm run build && mocha"
   },

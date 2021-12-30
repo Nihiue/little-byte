@@ -21,6 +21,10 @@ export async function compileFile(filePath:string, outputDir = '') {
   const bytecode = script.createCachedData();
   await fs.promises.writeFile(prefix + '.bytecode', bytecode);
 
-  const souceMap = getByteSource(wrappedCode);
-  await fs.promises.writeFile(prefix + '.bytesource', souceMap, 'utf-8');
+  if (code.length < 10 * 1024 * 1024) {
+    // disable bytesource for really big file
+    const souceMap = getByteSource(wrappedCode);
+    await fs.promises.writeFile(prefix + '.bytesource', souceMap, 'utf-8');
+  }
+
 }

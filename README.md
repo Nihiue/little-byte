@@ -1,4 +1,4 @@
-# little-byte-package
+# little-byte
 
 Compile Node.js code into bytecode.
 
@@ -58,6 +58,6 @@ require('./dist/index');
 
 ## How Does It Work
 
-[English](https://translate.google.com/translate?js=n&sl=chinese&tl=en&u=https://github.com/Nihiue/little-byte)
+[English](https://translate.google.com/translate?js=n&sl=chinese&tl=en&u=https://github.com/Nihiue/little-byte-demo)
 
-[Chinese](https://github.com/Nihiue/little-byte)
+[Chinese](https://github.com/Nihiue/little-byte-demo)
