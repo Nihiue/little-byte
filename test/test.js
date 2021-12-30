@@ -56,11 +56,16 @@ describe('Run ByteCode', function() {
     require('./dist/index');
   });
 
-  const sub = require('./dist/sub/index');
-  const sayHello = sub.sayHello.toString();
-  const myClass = sub.myClass.toString();
+  function getSub() {
+    const sub = require('./dist/sub/index');
+    const sayHello = sub.sayHello.toString();
+    const myClass = sub.myClass.toString();
+    return { sub, sayHello, myClass };
+  }
 
   it('function.toString() includes declaration', function() {
+    const { sub, sayHello, myClass } = getSub();
+
     assert(sayHello.includes('function sayHello'));
     assert(myClass.includes('class myClass'));
     assert(myClass.includes('constructor'));
@@ -68,17 +73,22 @@ describe('Run ByteCode', function() {
   });
 
   it('function.toString() does not include function body', function() {
+    const { sub, sayHello, myClass } = getSub();
+
     assert(!myClass.includes('return this.value'));
     assert(!sayHello.includes('console.log'));
   });
 
   it('exception in async arrow function does not crash', async function() {
+    const { sub, sayHello, myClass } = getSub();
+
     try {
       await sub.asyncArrowException();
     } catch (e) {}
   })
 
   it('stack trace works', function() {
+    const { sub, sayHello, myClass } = getSub();
     assert(sub.stackTrace().includes('/sub/index.js:'));
   })
 })
