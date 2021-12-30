@@ -38,6 +38,8 @@ walker.start({
 });
 ```
 
+### Build
+
 ```bash
 $ node build/index.js
 ```

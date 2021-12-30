@@ -13,6 +13,7 @@ type FileInfo = {
 };
 
 interface WalkOptions {
+  silent ?: boolean;
   inputDir: string;
   outputDir: string;
   onFile: (fileinfo: FileInfo, defaultAction: WalkAction) => WalkAction;
@@ -28,18 +29,18 @@ async function ensureDir(dirPath:string) {
   }
 }
 
-async function processFile(fileInfo: FileInfo, action: WalkAction, outputDir: string) {
+async function processFile(fileInfo: FileInfo, action: WalkAction, outputDir: string, silent = false) {
   const targetDir = path.dirname(path.join(outputDir, fileInfo.relativePath));
   switch(action) {
     case 'copy':
-      console.log(` - Copy: ${fileInfo.relativePath}`);
+      silent || console.log(` - Copy: ${fileInfo.relativePath}`);
       await ensureDir(targetDir);
       await fs.promises.copyFile(fileInfo.path, path.join(targetDir, fileInfo.name));
       break;
     case 'ignore': 
       break;
     case 'compile':
-      console.log(` - Compile: ${fileInfo.relativePath}`);
+      silent || console.log(` - Compile: ${fileInfo.relativePath}`);
       await ensureDir(targetDir);
       await compileFile(fileInfo.path, targetDir);
       break;
@@ -48,7 +49,7 @@ async function processFile(fileInfo: FileInfo, action: WalkAction, outputDir: st
   }
 }
 
-export async function start({ inputDir, outputDir, onFile }: WalkOptions) {
+export async function start({ inputDir, outputDir, onFile, silent }: WalkOptions) {
   const dirs:string[] = [ inputDir ];
 
   let currentDir;
@@ -80,7 +81,7 @@ export async function start({ inputDir, outputDir, onFile }: WalkOptions) {
           throw new Error(`little-byte: cannot compile non-js file: ${fileInfo.relativePath}`);
         }
 
-        await processFile(fileInfo, action || 'ignore', outputDir);
+        await processFile(fileInfo, action || 'ignore', outputDir, silent);
       } catch (e) {
         console.log(fileInfo, e);
       }

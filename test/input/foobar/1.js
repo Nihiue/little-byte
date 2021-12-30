@@ -1,1 +1,0 @@
-console.log("I am foobar/1.js");
