@@ -9,7 +9,7 @@
   "scripts": {
     "pub": "npm publish --registry=https://registry.npmjs.org",
     "build": "tsc -d",
-    "test": "npm run build && mocha"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",

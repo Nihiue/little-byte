@@ -1,8 +1,17 @@
 # little-byte
 
-[English Version](./README.md)
+[![npm version](https://badge.fury.io/js/little-byte.svg)](https://www.npmjs.com/package/little-byte)
+![test status](https://github.com/nihiue/little-byte/actions/workflows/test.yaml/badge.svg)
 
 将 Node.js 应用代码编译为字节码
+
+[English Docs](./README.md)
+
+## 安装
+
+```bash
+$ npm install --save-dev little-byte
+```
 
 ## 编译应用
 
@@ -21,7 +30,7 @@ walker.start({
     if (fileInfo.relativePath.startsWith('foobar/')) {
       return 'ignore';
     }
-    
+
     if (fileInfo.ext === '.jpg') {
       return 'ignore';
     }

@@ -1,8 +1,17 @@
 # little-byte
 
-[中文版](./README.zhCN.md)
+[![npm version](https://badge.fury.io/js/little-byte.svg)](https://www.npmjs.com/package/little-byte)
+![test status](https://github.com/nihiue/little-byte/actions/workflows/test.yaml/badge.svg)
 
 Compile Node.js code into bytecode.
+
+[中文文档](./README.zhCN.md)
+
+## Install
+
+```bash
+$ npm install --save-dev little-byte
+```
 
 ## Compile App
 
@@ -21,7 +30,7 @@ walker.start({
     if (fileInfo.relativePath.startsWith('foobar/')) {
       return 'ignore';
     }
-    
+
     if (fileInfo.ext === '.jpg') {
       return 'ignore';
     }
