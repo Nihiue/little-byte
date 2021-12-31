@@ -6,7 +6,7 @@
 
 ![typescript](https://img.shields.io/npm/types/scrub-js.svg)
 [![npm version](https://badge.fury.io/js/little-byte.svg)](https://www.npmjs.com/package/little-byte)
-![test status](https://github.com/nihiue/little-byte/actions/workflows/test.yaml/badge.svg)
+[![Test Suite](https://github.com/Nihiue/little-byte/actions/workflows/test.yaml/badge.svg)](https://github.com/Nihiue/little-byte/actions/workflows/test.yaml)
 
 ## 安装
 

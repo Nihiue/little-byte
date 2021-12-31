@@ -6,7 +6,7 @@ Compile Node.js code into bytecode.
 
 ![typescript](https://img.shields.io/npm/types/scrub-js.svg)
 [![npm version](https://badge.fury.io/js/little-byte.svg)](https://www.npmjs.com/package/little-byte)
-![test status](https://github.com/nihiue/little-byte/actions/workflows/test.yaml/badge.svg)
+[![Test Suite](https://github.com/Nihiue/little-byte/actions/workflows/test.yaml/badge.svg)](https://github.com/Nihiue/little-byte/actions/workflows/test.yaml)
 
 ## Install
 
@@ -82,5 +82,5 @@ It's possible to recover constant strings from bytecode with hex editor.
 
 ## For More Info
 
-[Docs](https://translate.google.com/translate?js=n&sl=chinese&tl=en&u=https://github.com/Nihiue/little-byte-demo) By Google Translate
+[Docs](https://github-com.translate.goog/Nihiue/little-byte-demo?_x_tr_sl=auto&_x_tr_tl=en) By Google Translate
 
