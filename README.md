@@ -4,6 +4,7 @@ Compile Node.js code into bytecode.
 
 [中文文档](./README.zhCN.md)
 
+![typescript](https://img.shields.io/npm/types/scrub-js.svg)
 [![npm version](https://badge.fury.io/js/little-byte.svg)](https://www.npmjs.com/package/little-byte)
 ![test status](https://github.com/nihiue/little-byte/actions/workflows/test.yaml/badge.svg)
 
