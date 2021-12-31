@@ -1,11 +1,11 @@
 # little-byte
 
-[![npm version](https://badge.fury.io/js/little-byte.svg)](https://www.npmjs.com/package/little-byte)
-![test status](https://github.com/nihiue/little-byte/actions/workflows/test.yaml/badge.svg)
-
 将 Node.js 应用代码编译为字节码
 
 [English Docs](./README.md)
+
+[![npm version](https://badge.fury.io/js/little-byte.svg)](https://www.npmjs.com/package/little-byte)
+![test status](https://github.com/nihiue/little-byte/actions/workflows/test.yaml/badge.svg)
 
 ## 安装
 
