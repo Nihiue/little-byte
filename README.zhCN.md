@@ -80,6 +80,38 @@ require('./dist/index');
 可以使用16进制编辑器从字节码中恢复出字符串等常量的值
 
 
+## API
+
+``` typescript
+
+littleByte.compiler.compileFile(filePath: string, outputDir?: string): Promise<void>
+
+littleByte.loader.loadBytecode(filePath: string): vm.Script;
+
+littleByte.loader.execByteCode(filePath: string): any;
+
+
+type WalkAction = 'ignore' | 'compile' | 'copy';
+
+type FileInfo = {
+    path: string;
+    relativePath: string;
+    name: string;
+    ext: string;
+    isScript: boolean;
+};
+
+interface WalkOptions {
+    silent?: boolean;
+    inputDir: string;
+    outputDir: string;
+    onFile: (fileinfo: FileInfo, defaultAction: WalkAction) => WalkAction;
+}
+
+littleByte.walker.start(options: WalkOptions): Promise<void>;
+
+```
+
 ## 更多信息
 
 [原理 & 设计思路](https://github.com/Nihiue/little-byte-demo)

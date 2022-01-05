@@ -79,8 +79,38 @@ The format of bytecode might change over Node.js versions.
 
 It's possible to recover constant strings from bytecode with hex editor.
 
+## API
 
-## For More Info
+``` typescript
 
-[Docs](https://github-com.translate.goog/Nihiue/little-byte-demo?_x_tr_sl=auto&_x_tr_tl=en) By Google Translate
+littleByte.compiler.compileFile(filePath: string, outputDir?: string): Promise<void>
 
+littleByte.loader.loadBytecode(filePath: string): vm.Script;
+
+littleByte.loader.execByteCode(filePath: string): any;
+
+
+type WalkAction = 'ignore' | 'compile' | 'copy';
+
+type FileInfo = {
+    path: string;
+    relativePath: string;
+    name: string;
+    ext: string;
+    isScript: boolean;
+};
+
+interface WalkOptions {
+    silent?: boolean;
+    inputDir: string;
+    outputDir: string;
+    onFile: (fileinfo: FileInfo, defaultAction: WalkAction) => WalkAction;
+}
+
+littleByte.walker.start(options: WalkOptions): Promise<void>;
+
+```
+
+## Docs
+
+[More Info](https://github-com.translate.goog/Nihiue/little-byte-demo?_x_tr_sl=auto&_x_tr_tl=en) By Google Translate
