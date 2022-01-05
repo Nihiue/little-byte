@@ -35,3 +35,9 @@ module.exports.readTextFile = function () {
 module.exports.stackTrace = function () {
   return (new Error()).stack;
 }
+
+module.exports.getModuleInfo = function () {
+  return {
+    module, __dirname, __filename
+  };
+}

@@ -52,19 +52,27 @@ describe('Compile ByteCode', function () {
 
 describe('Run ByteCode', function () {
 
-  it('app runs without error', function () {
+  it('app should run without error', function () {
     require('./dist/index');
   });
 
-  function getSub() {
-    const sub = require('./dist/sub/index');
-    const sayHello = sub.sayHello.toString();
-    const myClass = sub.myClass.toString();
-    return { sub, sayHello, myClass };
+  let subModule;
+  function getSubModule() {
+    if (!subModule) {
+      const mod = require('./dist/sub/index');
+      const sayHello = mod.sayHello.toString();
+      const myClass = mod.myClass.toString();
+      subModule = {
+        mod,
+        sayHello,
+        myClass
+      };
+    }    
+    return subModule;
   }
 
-  it('function.toString() includes declaration', function () {
-    const { sub, sayHello, myClass } = getSub();
+  it('function.toString() should includes declaration', function () {
+    const { mod, sayHello, myClass } = getSubModule();
 
     assert(sayHello.includes('function sayHello'));
     assert(myClass.includes('class myClass'));
@@ -72,23 +80,35 @@ describe('Run ByteCode', function () {
     assert(myClass.includes('inc()'));
   });
 
-  it('function.toString() does not include function body', function () {
-    const { sub, sayHello, myClass } = getSub();
+  it('function.toString() should not include function body', function () {
+    const { mod, sayHello, myClass } = getSubModule();
 
     assert(!myClass.includes('return this.value'));
     assert(!sayHello.includes('console.log'));
   });
 
-  it('exception in async arrow function does not crash', async function () {
-    const { sub, sayHello, myClass } = getSub();
+  it('exception in async arrow function should not crash', async function () {
+    const { mod, sayHello, myClass } = getSubModule();
 
     try {
-      await sub.asyncArrowException();
-    } catch (e) { }
+      await mod.asyncArrowException();
+    } catch (e) {
+      assert(e.toString().includes('TypeError'));
+    }
   })
 
-  it('stack trace works', function () {
-    const { sub, sayHello, myClass } = getSub();
-    assert(sub.stackTrace().includes('/sub/index.js:'));
+  it('stack trace should contain correct file path', function () {
+    const { mod, sayHello, myClass } = getSubModule();
+    assert(mod.stackTrace().includes('/sub/index.js:'));
   })
+
+  it('require should pass module info', function () {
+    const { mod, sayHello, myClass } = getSubModule();
+    const { __dirname, __filename, module } = mod.getModuleInfo();
+    assert(typeof __dirname === 'string');
+    assert(__filename.endsWith('.bytecode'));
+    assert(typeof module === 'object');
+    assert(typeof module.exports === 'object');
+  })
+
 })
