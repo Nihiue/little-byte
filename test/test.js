@@ -67,7 +67,7 @@ describe('Run ByteCode', function () {
         sayHello,
         myClass
       };
-    }    
+    }
     return subModule;
   }
 
@@ -87,7 +87,7 @@ describe('Run ByteCode', function () {
     assert(!sayHello.includes('console.log'));
   });
 
-  it('exception in async arrow function should not crash', async function () {
+  it('read property of undefined in async arrow function should not crash', async function () {
     const { mod, sayHello, myClass } = getSubModule();
 
     try {
@@ -96,6 +96,17 @@ describe('Run ByteCode', function () {
       assert(e.toString().includes('TypeError'));
     }
   })
+
+  it('read property of null in async arrow function should not crash', async function () {
+    const { mod, sayHello, myClass } = getSubModule();
+
+    try {
+      await mod.asyncArrowExceptionWithNull();
+    } catch (e) {
+      assert(e.toString().includes('TypeError'));
+    }
+  })
+
 
   it('stack trace should contain correct file path', function () {
     const { mod, sayHello, myClass } = getSubModule();

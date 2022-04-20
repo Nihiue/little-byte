@@ -24,6 +24,11 @@ module.exports.stringExport = "foobar";
 module.exports.asyncArrowException = async () => {
   undefined();
 }
+
+module.exports.asyncArrowExceptionWithNull = async () => {
+  const e = null;
+  return e.Status;
+}
 module.exports.arrowFunction = (a) => a + 1;
 
 module.exports.myClass = myClass;
