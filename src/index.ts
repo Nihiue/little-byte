@@ -1,4 +1,4 @@
-const supportVersions = ['v12', 'v13', 'v14', 'v15', 'v16'];
+const supportVersions = ['v12', 'v13', 'v14', 'v15', 'v16', 'v17', 'v18'];
 if (!supportVersions.some(v => process.version.startsWith(v))) {
   throw new Error('bytecode: unsupported node version');
 }
