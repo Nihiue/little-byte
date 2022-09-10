@@ -2,7 +2,7 @@
 
 将 Node.js 应用代码编译为字节码
 
-[English Docs](./README.md)
+[英文文档 | English Docs](https://github.com/Nihiue/little-byte/blob/main/README.md)
 
 ![typescript](https://img.shields.io/npm/types/scrub-js.svg)
 [![npm version](https://badge.fury.io/js/little-byte.svg)](https://www.npmjs.com/package/little-byte)
@@ -112,6 +112,10 @@ littleByte.walker.start(options: WalkOptions): Promise<void>;
 
 ```
 
-## 更多信息
+## 原理 & 设计思路
 
-[原理 & 设计思路](https://github.com/Nihiue/little-byte-demo)
+[通过字节码保护Node.js源码之原理篇](https://zhuanlan.zhihu.com/p/359235114)
+
+[源代码与 Bytecode 性能测试](./benchmark.md)
+
+[Node.js 字节码源码相关问题补完](https://zhuanlan.zhihu.com/p/419591875)

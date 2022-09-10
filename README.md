@@ -2,7 +2,7 @@
 
 Compile Node.js code into bytecode.
 
-[中文文档](./README.zhCN.md)
+[中文文档 | Chinese Docs](https://github.com/Nihiue/little-byte/blob/main/README.zhCN.md)
 
 ![typescript](https://img.shields.io/npm/types/scrub-js.svg)
 [![npm version](https://badge.fury.io/js/little-byte.svg)](https://www.npmjs.com/package/little-byte)
@@ -111,6 +111,12 @@ littleByte.walker.start(options: WalkOptions): Promise<void>;
 
 ```
 
-## Docs
+## Related Articles
 
-[More Info](https://github-com.translate.goog/Nihiue/little-byte-demo?_x_tr_sl=auto&_x_tr_tl=en) By Google Translate
+[Principles of protecting Node.js source code through bytecode](https://translate.google.com/website?sl=auto&tl=en&hl&u=https://zhuanlan.zhihu.com/p/359235114)
+
+[Source code and Bytecode performance test](https://github-com.translate.goog/Nihiue/little-byte-demo/blob/main/benchmark.md?_x_tr_sl=auto&_x_tr_tl=en)
+
+[Node.js bytecode source related issues completed](https://translate.google.com/website?sl=auto&tl=en&hl&u=https://zhuanlan.zhihu.com/p/419591875)
+
+Powered By Google Translate
