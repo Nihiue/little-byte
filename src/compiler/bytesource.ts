@@ -42,7 +42,7 @@ function walkNode(roots: Statement[], codeStr: string) {
 }
 
 function padString(len: number) {
-  return len <= 0 ? '' : (' '.repeat(len));
+  return len <= 0 ? '' : ('\u200b'.repeat(len));
 }
 
 function findLineBreaks(codeStr: string) {
