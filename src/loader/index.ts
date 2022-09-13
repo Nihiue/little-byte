@@ -24,7 +24,7 @@ export function loadBytecode(filename: string) {
   headerUtils.set(byteBuffer, 'flag_hash', getReferenceFlagHash());
 
   const sourceLength = headerUtils.buf2num(headerUtils.get(byteBuffer, 'source_hash'));
-  const dummySource = bytesource.length === sourceLength ? bytesource : ' '.repeat(sourceLength);
+  const dummySource = bytesource.length === sourceLength ? bytesource : '\u200b'.repeat(sourceLength);
   const script = new vm.Script(dummySource, {
     filename: filename,
     cachedData: byteBuffer
